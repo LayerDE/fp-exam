@@ -101,7 +101,7 @@ announceEvent (IllegalMove playerName) =
 announceEvent (GameOver) = do
   liftIO $ putStrLn "Game Over"
   gameState <- State.get
-  let stacks = gameStateStacks gameState -- TODO
+  let stacks = gameStateStacks gameState
       playerPenalties = Map.map penalty stacks
       highscore = fst $ Map.foldrWithKey (\playerName points (highscore, loserPoints) -> 
                                           if points >= loserPoints
@@ -245,7 +245,9 @@ playerProcessGameEventM playerName gameEvent = do
     HandsDealt hands ->
       State.put (PlayerState { playerHand = hands ! playerName,
                                playerTrick = emptyTrick,
-                               playerStack = [] })
+                               playerStack = [],
+                               playerShoots = False,
+                               playerHistory = [] })
 
     PlayerTurn turnPlayerName ->
       return ()

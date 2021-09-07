@@ -65,12 +65,19 @@ ex7:
             startCustom1 :: Player -> IO()
 
 ex8:
-    TODO
+    Game.hs:
+        edit:
+            data PlayerState = PlayerState
+            emptyPlayerState = PlayerState
+    Gameplay.hs
+        edit:
+            playerProcessGameEventM :: (HasPlayerState m, PlayerInterface m) => PlayerName -> GameEvent -> m ()
 
 ex9:
     M0000000.hs:
         add:
             strategy :: PlayerStrategy
+
 ex10:
     Gameplay.hs:
         edit:

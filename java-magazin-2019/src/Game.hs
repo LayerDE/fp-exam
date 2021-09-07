@@ -70,6 +70,7 @@ legalCardFilter (h,t) c = legalCard c h t
 
 type PlayerStacks = Map PlayerName (Set Card)
 type PlayerHands  = Map PlayerName Hand
+type PlayerHistory = [(PlayerName, Trick)]
 
 data GameState =
   GameState
@@ -163,10 +164,12 @@ processGameEvent (TrickTaken player trick) state =
 data PlayerState =
   PlayerState { playerHand  :: Hand,
                 playerTrick :: Trick,
-                playerStack :: [Card] }
+                playerStack :: [Card],
+                playerShoots :: Bool,
+                playerHistory :: PlayerHistory }
   deriving Show
 
-emptyPlayerState = PlayerState emptyHand [] []
+emptyPlayerState = PlayerState emptyHand [] [] False []
 
 {-
 playerProcessGameEvent :: PlayerName -> GameEvent -> PlayerState -> PlayerState
