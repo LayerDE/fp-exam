@@ -107,7 +107,7 @@ instance Penalty a => Penalty [a] where
   penalty xs = sum (map penalty xs)
 
 instance Penalty a => Penalty (Set a) where
-  penalty xs = sum (Set.map penalty xs)
+  penalty xs = penalty (Set.elems xs)
 
 
 class Pretty a where

@@ -102,7 +102,7 @@ announceEvent (IllegalMove playerName) =
 announceEvent (GameOver) = do
   liftIO $ putStrLn "Game Over"
   gameState <- State.get
-  let stacks = gameStateStacks gameState
+  let stacks = gameStateStacks gameState -- TODO
       playerPenalties = Map.map penalty stacks
       loserName = fst $ Map.foldrWithKey (\playerName points (loserName, loserPoints) -> 
                                           if points >= loserPoints
