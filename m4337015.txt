@@ -6,6 +6,10 @@ ex1:
         add:
             rankMap :: Rank -> String 
             suitMap :: Suit -> String
+            instance Pretty Char
+    Gameplay.hs:
+        edit:
+            playInteractive :: PlayerStrategy
 
 ex2:
     Game.hs:
@@ -23,8 +27,27 @@ ex2:
             playAlongPlayer :: PlayerName -> PlayerState -> Player
             playAlongCard' :: (HasPlayerState m, MonadIO m) => m Card
 
+ex3:
+    Cards.hs:
+        edit:
+            instance Penalty a => Penalty (Set a)
+
 ex4:
     Gameplay.hs:
         edit:
             announceEvent :: ControllerInterface m => GameEvent -> m ()
 
+ex5:
+    Gameplay.hs:
+        edit:
+            announceEvent :: ControllerInterface m => GameEvent -> m ()
+
+ex6:
+    Gameplay.hs:
+        edit:
+            playInteractive :: PlayerStrategy
+    Game.hs:
+        add:
+            legalCardFilter :: (Hand, Trick) -> Card -> Bool
+
+ex7:
