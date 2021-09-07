@@ -104,6 +104,11 @@ announceEvent (GameOver) = do
   gameState <- State.get
   let stacks = gameStateStacks gameState -- TODO
       playerPenalties = Map.map penalty stacks
+      highscore = fst $ Map.foldrWithKey (\playerName points (highscore, loserPoints) -> 
+                                          if points >= loserPoints
+                                          then (points, points)
+                                          else (highscore, loserPoints)
+                                       ) (0, 0) playerPenalties
       loserName = fst $ Map.foldrWithKey (\playerName points (loserName, loserPoints) -> 
                                           if points >= loserPoints
                                           then (playerName, points)
@@ -115,7 +120,10 @@ announceEvent (GameOver) = do
         putStr (show points)
         putStrLn " points."
   liftIO $ mapM_ stackInfo (Map.assocs playerPenalties)
-  liftIO $ putStrLn (loserName ++ " lost the game.")
+  if(highscore == penalty(Cards.deck)) then
+    liftIO $ putStrLn (loserName ++ " won the game.")
+  else
+    liftIO $ putStrLn (loserName ++ " lost the game.")
 announceEvent gameEvent =
   liftIO $ pure ()
 
