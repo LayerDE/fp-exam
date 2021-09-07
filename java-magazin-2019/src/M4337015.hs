@@ -1,5 +1,5 @@
 {-# LANGUAGE RankNTypes #-}
-module M0000000 where
+module M4337015 where
 
 import qualified Data.Foldable as Foldable
 import qualified Data.Map.Strict as Map
