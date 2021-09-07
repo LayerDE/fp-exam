@@ -109,10 +109,10 @@ announceEvent (GameOver) = do
                                           then (points, points)
                                           else (highscore, loserPoints)
                                        ) (0, 0) playerPenalties
-      loserName = fst $ Map.foldrWithKey (\playerName points (loserName, loserPoints) -> 
+      xtremName = fst $ Map.foldrWithKey (\playerName points (xtremName, loserPoints) -> 
                                           if points >= loserPoints
                                           then (playerName, points)
-                                          else (loserName, loserPoints)
+                                          else (xtremName, loserPoints)
                                        ) ("", 0) playerPenalties
       stackInfo (playerName, points) = do
         putStr playerName
@@ -120,10 +120,10 @@ announceEvent (GameOver) = do
         putStr (show points)
         putStrLn " points."
   liftIO $ mapM_ stackInfo (Map.assocs playerPenalties)
-  if(highscore == penalty(Cards.deck)) then
-    liftIO $ putStrLn (loserName ++ " won the game.")
+  if highscore == penalty Cards.deck then
+    liftIO $ putStrLn (xtremName ++ " won the game.")
   else
-    liftIO $ putStrLn (loserName ++ " lost the game.")
+    liftIO $ putStrLn (xtremName ++ " lost the game.")
 announceEvent gameEvent =
   liftIO $ pure ()
 
