@@ -1,3 +1,5 @@
+-- {-# LANGUAGE TypeSynonymInstances #-}
+{-# LANGUAGE FlexibleInstances #-}
 module Cards where
 
 import qualified Data.Set as Set
@@ -96,7 +98,7 @@ suitMap s | s == Diamonds = "♦️"
 class Penalty a where
   penalty :: a -> Int
 
-instance Penalty Card where --TODO
+instance Penalty Card where
   penalty (Card Hearts r) = 1
   penalty (Card Spades Queen) = 13
   penalty (Card _ _) = 0
@@ -106,6 +108,7 @@ instance Penalty a => Penalty [a] where
 
 instance Penalty a => Penalty (Set a) where
   penalty xs = sum (Set.map penalty xs)
+
 
 class Pretty a where
   pretty :: a -> String
@@ -118,23 +121,18 @@ instance Pretty Suit where
   pretty s = suitMap s
 
 instance Pretty Card where
-  pretty c = pretty (rank c) ++ pretty (suit c)
+  pretty c = pretty (rank c) ++ pretty (suit c) ++ "  "
 
 instance Pretty a => Pretty [a] where
   pretty [] = ""
   pretty [x] = pretty x
-  pretty (x:xs) = pretty x ++ " and\n" ++ pretty xs
+  pretty (x:xs) = pretty x ++ pretty xs
 
 instance (Pretty a, Pretty b) => Pretty (a, b) where
-  pretty (i, x) = pretty i ++ ": " ++ pretty x
+  pretty (i, x) = pretty i ++ ": " ++ pretty x ++ "\n"
 
 instance Pretty Integer where
   pretty i = show i
 
 instance Pretty Char where
-  pretty = show
-
-{-
-instance Pretty (String, Card) where
-  pretty (a,b) = a ++ "," ++ pretty(b)
--}
+  pretty p = [p]

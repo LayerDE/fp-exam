@@ -376,20 +376,17 @@ playInteractive =
     then
       liftIO $ putStrLn "You lead the next trick!"
     else
-      liftIO $ putStrLn ("Cards on table: " ++ pretty (reverse trick)) -- TODO
-  let myhand = filter (legalCardFilter (hand,trick)) (Set.elems hand)
-      ncards = Set.size hand
-      
-  liftIO $ putStrLn ("Your hand:")
+      liftIO $ putStrLn ("Cards on table: " ++ pretty (reverse trick))
+  let myhand = filter (Game.legalCardFilter (hand,trick)) $ Set.elems hand
+      -- ncards = Set.size hand
+      ncards = length myhand
+
+  liftIO $ putStrLn ("Your Hand:" )
+  liftIO $ putStrLn (pretty $ Set.elems hand)
+  liftIO $ putStrLn ("Your Options:")
   liftIO $ putStrLn (pretty (zip [(1::Integer)..] myhand))
   liftIO $ putStrLn ("Pick a card (1-" ++ show ncards ++ ")")
-  {- TODO
-  if lenght myhand == 1
-    then
-      selected <- liftIO $ 1
-    else
-  -}
-  selected <- liftIO $ getNumber (1,ncards)
+  selected <- if length myhand == 1 then return 1 else liftIO $ getNumber (1,ncards)
   return (myhand !! (selected - 1))
 
 playerMike = makePlayer "Mike" playAlongStrategy
