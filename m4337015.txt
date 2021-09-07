@@ -62,3 +62,11 @@ ex7:
     Gameplay.hs:
         add:
             startCustom1 :: Player -> IO()
+
+ex10:
+    Gameplay.hs:
+        edit:
+            start :: IO ()
+            startCustom1 :: Player -> IO()
+            runGame :: [Player] -> [Card] -> IO ()
+            startController :: ControllerInterface m => [Player] -> [Card] -> m ()

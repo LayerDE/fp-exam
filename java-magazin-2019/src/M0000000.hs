@@ -25,8 +25,12 @@ shootTheMoonStrategy =
     then
       return (Set.findMax hand)
     else
-      case Set.lookupMin followingCardsOnHand of
+      if (penalty (cardsOfTrick trick) > 0)
+        && (suit (Set.findMax hand) == firstSuit) then
+        return (Set.findMax hand)
+      else
+        case Set.lookupMax followingCardsOnHand of
         Nothing ->
-          return (Set.findMin hand) -- any card is fine, so try to get rid of high hearts
+          return (Set.findMin hand)
         Just card ->
-          return card           -- otherwise use the minimal following card
+          return card 

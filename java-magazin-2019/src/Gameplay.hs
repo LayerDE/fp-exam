@@ -42,10 +42,10 @@ data Player =
   }
 
 -- main entry point
-runGame :: [Player] -> IO ()
-runGame players = do
+runGame :: [Player] -> [Card] -> IO ()
+runGame players cards = do
   -- create game state monad on top of IO
-  State.evalStateT (startController players) emptyGameState
+  State.evalStateT (startController players cards) emptyGameState
 
 type HasGameState m = MonadState GameState m
 
@@ -53,15 +53,14 @@ type GameInterface m = (MonadState GameState m, MonadWriter [GameEvent] m)
 
 type ControllerInterface m = (MonadIO m, MonadState GameState m)
 
-startController :: ControllerInterface m => [Player] -> m ()
-startController players = do
+startController :: ControllerInterface m => [Player] -> [Card] -> m ()
+startController players cards = do
   -- setup game state
   let playerNames = map playerName players
   State.modify (\state -> state { gameStatePlayers = playerNames,
                                   gameStateStacks  = Map.fromList (zip playerNames $ repeat Set.empty)
                                 })
-  shuffledCards <- liftIO $ Shuffle.shuffleRounds 10 Cards.deck
-  let hands = Map.fromList (zip playerNames (map Set.fromList (Shuffle.distribute (length playerNames) shuffledCards)))
+  let hands = Map.fromList (zip playerNames (map Set.fromList (Shuffle.distribute (length playerNames) cards)))
   gameController players [DealHands hands]
 
 -- state projections
@@ -403,7 +402,11 @@ playerAnnette = makePlayer "Annette" playAlongStrategy
 playerNicole = makePlayer "Nicole" playAlongStrategy
 
 start :: IO ()
-start = runGame [playerNicole, playerAnnette, playerPeter, playerMike]
+start = do
+  shuffledCards <- liftIO $ Shuffle.shuffleRounds 10 Cards.deck
+  runGame [playerNicole, playerAnnette, playerPeter, playerMike] shuffledCards
 
 startCustom1 :: Player -> IO()
-startCustom1 p = runGame [playerNicole, playerAnnette, playerPeter, p] 
+startCustom1 p = do
+  shuffledCards <- liftIO $ Shuffle.shuffleRounds 10 Cards.deck
+  runGame [playerNicole, playerAnnette, playerMike, p] shuffledCards
