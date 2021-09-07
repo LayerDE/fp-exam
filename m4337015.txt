@@ -83,5 +83,5 @@ ex10:
         edit:
             start :: IO ()
             startCustom1 :: Player -> IO()
-            runGame :: [Player] -> [Card] -> IO ()
+            runGame :: [Player] -> IO [Card] -> IO ()
             startController :: ControllerInterface m => [Player] -> [Card] -> m ()

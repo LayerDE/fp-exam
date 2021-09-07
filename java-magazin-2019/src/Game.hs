@@ -36,6 +36,8 @@ cardsOfTrick trick = map snd trick
 addToTrick :: PlayerName -> Card -> Trick -> Trick
 addToTrick playerName card trick = (playerName, card) : trick
 
+addToHistory :: PlayerName -> Trick -> PlayerHistory -> PlayerHistory
+addToHistory pname trick hist = (pname, trick) : hist
 
 leadingCardOfTrick :: Trick -> Card
 leadingCardOfTrick trick = snd (last trick)
