@@ -19,6 +19,7 @@ import qualified Data.Set as Set
 
 --import Debug.Trace (trace, traceShowId, traceIO, traceM)
 
+-- import qualified M0000000
 import Cards
 import Game hiding (processGameCommandM, processGameEvent, playerProcessGameEvent)
 import qualified Shuffle

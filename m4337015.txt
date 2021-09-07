@@ -51,3 +51,7 @@ ex6:
             legalCardFilter :: (Hand, Trick) -> Card -> Bool
 
 ex7:
+    +M0000000.hs
+        add:
+            shootTheMoonStrategy :: PlayerStrategy
+        
