@@ -58,6 +58,7 @@ ex7:
         add:
             import qualified M0000000
         edit:
+            import qualified Gameplay as G
             main :: IO ()
     Gameplay.hs:
         add:
