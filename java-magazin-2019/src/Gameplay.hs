@@ -42,10 +42,8 @@ data Player =
   }
 
 -- main entry point
-runGame :: [Player] -> [Card] -> IO ()
-runGame players cards = do
-  -- create game state monad on top of IO
-  State.evalStateT (startController players cards) emptyGameState
+runGame :: [Player] -> IO [Card] -> IO ()
+runGame players cards = cards >>= (\cards2 -> State.evalStateT (startController players cards2) emptyGameState)
 
 type HasGameState m = MonadState GameState m
 
@@ -404,11 +402,11 @@ playerAnnette = makePlayer "Annette" playAlongStrategy
 playerNicole = makePlayer "Nicole" playAlongStrategy
 
 start :: IO ()
-start = do
-  shuffledCards <- liftIO $ Shuffle.shuffleRounds 10 Cards.deck
+start =
+  let shuffledCards = Shuffle.shuffleRounds 10 Cards.deck in do
   runGame [playerNicole, playerAnnette, playerPeter, playerMike] shuffledCards
 
 startCustom1 :: Player -> IO()
-startCustom1 p = do
-  shuffledCards <- liftIO $ Shuffle.shuffleRounds 10 Cards.deck
+startCustom1 p = 
+  let shuffledCards = Shuffle.shuffleRounds 10 Cards.deck in do
   runGame [playerNicole, playerAnnette, playerMike, p] shuffledCards
