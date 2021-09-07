@@ -19,7 +19,6 @@ import qualified Data.Set as Set
 
 --import Debug.Trace (trace, traceShowId, traceIO, traceM)
 
--- import qualified M0000000
 import Cards
 import Game hiding (processGameCommandM, processGameEvent, playerProcessGameEvent)
 import qualified Shuffle
@@ -405,3 +404,6 @@ playerNicole = makePlayer "Nicole" playAlongStrategy
 
 start :: IO ()
 start = runGame [playerNicole, playerAnnette, playerPeter, playerMike]
+
+startCustom1 :: Player -> IO()
+startCustom1 p = runGame [playerNicole, playerAnnette, playerPeter, p] 

@@ -23,10 +23,10 @@ shootTheMoonStrategy =
       followingCardsOnHand = Set.filter ((== firstSuit) . suit) hand
   if trickEmpty trick 
     then
-      return (Set.findMin hand)
+      return (Set.findMax hand)
     else
       case Set.lookupMin followingCardsOnHand of
         Nothing ->
-          return (Set.findMax hand) -- any card is fine, so try to get rid of high hearts
+          return (Set.findMin hand) -- any card is fine, so try to get rid of high hearts
         Just card ->
           return card           -- otherwise use the minimal following card

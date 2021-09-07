@@ -51,7 +51,14 @@ ex6:
             legalCardFilter :: (Hand, Trick) -> Card -> Bool
 
 ex7:
-    +M0000000.hs
+    +M0000000.hs:
         add:
-            shootTheMoonStrategy :: PlayerStrategy
-        
+            all
+    Main.hs:
+        add:
+            import qualified M0000000
+        edit:
+            main :: IO ()
+    Gameplay.hs:
+        add:
+            startCustom1 :: Player -> IO()
