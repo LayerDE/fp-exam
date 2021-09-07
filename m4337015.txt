@@ -1,0 +1,30 @@
+ex1:
+    Cards.hs:
+        edit:
+            instance Pretty Rank
+            instance Pretty Suit
+        add:
+            rankMap :: Rank -> String 
+            suitMap :: Suit -> String
+
+ex2:
+    Game.hs:
+        remove:
+            computeNextPlayer :: PlayerName -> [PlayerName] -> PlayerNa
+            playerProcessGameEvent :: PlayerName -> GameEvent -> PlayerState -> PlayerState
+    Gameplay.hs:
+        remove:
+            import qualified Control.Monad.Writer (WriterT)
+            import Control.Monad.State.Lazy (State, StateT)
+            import Control.Monad as Monad
+            import Debug.Trace (trace, traceShowId, traceIO, traceM)
+            data PlayerEventProcessor
+            playAlongProcessEventM :: (MonadState PlayerState m, PlayerInterface m) => PlayerName -> GameEvent -> m ()
+            playAlongPlayer :: PlayerName -> PlayerState -> Player
+            playAlongCard' :: (HasPlayerState m, MonadIO m) => m Card
+
+ex4:
+    Gameplay.hs:
+        edit:
+            announceEvent :: ControllerInterface m => GameEvent -> m ()
+

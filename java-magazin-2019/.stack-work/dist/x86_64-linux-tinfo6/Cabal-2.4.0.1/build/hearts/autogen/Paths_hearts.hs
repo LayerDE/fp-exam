@@ -29,12 +29,12 @@ version :: Version
 version = Version [0,1,0,0] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
-bindir     = "/home/layer/hearts/java-magazin-2019/.stack-work/install/x86_64-linux-tinfo6/f98c46a29411f78f4a78f721daf30adb1ac2f2a54e9267817dde59f9ae9bdd38/8.6.4/bin"
-libdir     = "/home/layer/hearts/java-magazin-2019/.stack-work/install/x86_64-linux-tinfo6/f98c46a29411f78f4a78f721daf30adb1ac2f2a54e9267817dde59f9ae9bdd38/8.6.4/lib/x86_64-linux-ghc-8.6.4/hearts-0.1.0.0-AE6CZaEFToOHjdietSdOm9-hearts"
-dynlibdir  = "/home/layer/hearts/java-magazin-2019/.stack-work/install/x86_64-linux-tinfo6/f98c46a29411f78f4a78f721daf30adb1ac2f2a54e9267817dde59f9ae9bdd38/8.6.4/lib/x86_64-linux-ghc-8.6.4"
-datadir    = "/home/layer/hearts/java-magazin-2019/.stack-work/install/x86_64-linux-tinfo6/f98c46a29411f78f4a78f721daf30adb1ac2f2a54e9267817dde59f9ae9bdd38/8.6.4/share/x86_64-linux-ghc-8.6.4/hearts-0.1.0.0"
-libexecdir = "/home/layer/hearts/java-magazin-2019/.stack-work/install/x86_64-linux-tinfo6/f98c46a29411f78f4a78f721daf30adb1ac2f2a54e9267817dde59f9ae9bdd38/8.6.4/libexec/x86_64-linux-ghc-8.6.4/hearts-0.1.0.0"
-sysconfdir = "/home/layer/hearts/java-magazin-2019/.stack-work/install/x86_64-linux-tinfo6/f98c46a29411f78f4a78f721daf30adb1ac2f2a54e9267817dde59f9ae9bdd38/8.6.4/etc"
+bindir     = "/home/layer/fp-exam/java-magazin-2019/.stack-work/install/x86_64-linux-tinfo6/f98c46a29411f78f4a78f721daf30adb1ac2f2a54e9267817dde59f9ae9bdd38/8.6.4/bin"
+libdir     = "/home/layer/fp-exam/java-magazin-2019/.stack-work/install/x86_64-linux-tinfo6/f98c46a29411f78f4a78f721daf30adb1ac2f2a54e9267817dde59f9ae9bdd38/8.6.4/lib/x86_64-linux-ghc-8.6.4/hearts-0.1.0.0-AE6CZaEFToOHjdietSdOm9-hearts"
+dynlibdir  = "/home/layer/fp-exam/java-magazin-2019/.stack-work/install/x86_64-linux-tinfo6/f98c46a29411f78f4a78f721daf30adb1ac2f2a54e9267817dde59f9ae9bdd38/8.6.4/lib/x86_64-linux-ghc-8.6.4"
+datadir    = "/home/layer/fp-exam/java-magazin-2019/.stack-work/install/x86_64-linux-tinfo6/f98c46a29411f78f4a78f721daf30adb1ac2f2a54e9267817dde59f9ae9bdd38/8.6.4/share/x86_64-linux-ghc-8.6.4/hearts-0.1.0.0"
+libexecdir = "/home/layer/fp-exam/java-magazin-2019/.stack-work/install/x86_64-linux-tinfo6/f98c46a29411f78f4a78f721daf30adb1ac2f2a54e9267817dde59f9ae9bdd38/8.6.4/libexec/x86_64-linux-ghc-8.6.4/hearts-0.1.0.0"
+sysconfdir = "/home/layer/fp-exam/java-magazin-2019/.stack-work/install/x86_64-linux-tinfo6/f98c46a29411f78f4a78f721daf30adb1ac2f2a54e9267817dde59f9ae9bdd38/8.6.4/etc"
 
 getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: IO FilePath
 getBinDir = catchIO (getEnv "hearts_bindir") (\_ -> return bindir)
