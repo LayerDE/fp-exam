@@ -69,9 +69,13 @@ ex8:
         edit:
             data PlayerState = PlayerState
             emptyPlayerState = PlayerState
+        add:
+            addToHistory :: PlayerName -> Trick -> PlayerHistory -> PlayerHistory
     Gameplay.hs
         edit:
             playerProcessGameEventM :: (HasPlayerState m, PlayerInterface m) => PlayerName -> GameEvent -> m ()
+        add:
+            modifyHistory f = State.modify (\playerState -> playerState { playerHistory = f (playerHistory playerState)})
 
 ex9:
     M0000000.hs:
