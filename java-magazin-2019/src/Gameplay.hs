@@ -376,8 +376,8 @@ playInteractive =
     then
       liftIO $ putStrLn "You lead the next trick!"
     else
-      liftIO $ putStrLn ("Cards on table: " ++ show (reverse trick)) -- TODO ++ pretty (reverse trick)
-  let myhand = Set.elems hand  -- TODO filter (legalCardFilter (hand,trick)) Set.elems hand
+      liftIO $ putStrLn ("Cards on table: " ++ pretty (reverse trick)) -- TODO
+  let myhand = filter (legalCardFilter (hand,trick)) (Set.elems hand)
       ncards = Set.size hand
       
   liftIO $ putStrLn ("Your hand:")

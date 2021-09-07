@@ -96,7 +96,7 @@ suitMap s | s == Diamonds = "♦️"
 class Penalty a where
   penalty :: a -> Int
 
-instance Penalty Card where
+instance Penalty Card where --TODO
   penalty (Card Hearts r) = 1
   penalty (Card Spades Queen) = 13
   penalty (Card _ _) = 0
@@ -130,6 +130,9 @@ instance (Pretty a, Pretty b) => Pretty (a, b) where
 
 instance Pretty Integer where
   pretty i = show i
+
+instance Pretty Char where
+  pretty = show
 
 {-
 instance Pretty (String, Card) where
